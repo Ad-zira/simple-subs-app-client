@@ -1,12 +1,40 @@
-import React from 'react'
-import  {Navbar, NavItem, NavLink} from 'react-bootstrap';
+import  {Navbar, NavItem, NavLink } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+// import Article from './Article'
+import { useContext } from 'react';
+import { UserContext } from '../../context';
+import styled from 'styled-components';
+
+const LeftNavContainer = styled.div`
+margin-left: auto;
+`
 
 const Nav = () => {
+	// eslint-disable-next-line
+	const [state, setState] = useContext(UserContext); // useContext will return an array
+
+	const navigate = useNavigate()
+	
+	// console.log(state, "nav")
+	const handleLogout = () => {
+		setState({ data: null, loading: false, error: null })
+		localStorage.removeItem("token")
+		navigate('/');
+	}
+	
 	return (
 		<Navbar>
 			<NavItem>
-				<NavLink> Home </NavLink>
+				<Link to="/" className="nav-link">Home</Link>
+				{/* <Link to="/articles" className="nav-link">Article</Link> */}
 			</NavItem>
+			{state.data && (
+				<LeftNavContainer>
+					<NavItem>
+						<NavLink onClick={handleLogout}>Logout</NavLink>
+					</NavItem>
+				</LeftNavContainer>
+			)}
 		</Navbar>
 	)
 }

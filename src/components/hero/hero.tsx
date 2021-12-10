@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container } from 'react-bootstrap'
 import styled from 'styled-components'
 
@@ -17,6 +16,7 @@ background-color: rgb(5, 148, 112);
 padding: 3rem;
 color: white;
 width: 32.5rem;
+border-radius: 5px;
 `
 
 const Heading = styled.h1`
@@ -35,8 +35,8 @@ export default function Hero() {
 				<HeaderContainer>
 					<Heading>Feed Your Mind with the best</Heading>
 					<SubHeading> Just a sub heading , you needt to grow, learn, and become more successful by reading some of the top article by highly reputable individuals.</SubHeading>
-					<Example text="Signup" variant="primary"/>
-					<Example text="Login" variant="info" />
+					<Example text="Signup" variant="primary" isSignupFlow={true} />
+					<Example text="Login" variant="info" isSignupFlow={false} />
 				</HeaderContainer>
 			</Container>
 		</HeroYea>
